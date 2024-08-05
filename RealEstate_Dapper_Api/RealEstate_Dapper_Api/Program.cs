@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddTransient<Context>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
-builder.Services.AddTransient<IProductRepository, ProductRespository>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IWhoWeAreDetailRepository, WhoWeAreDetailRepository>();
 builder.Services.AddTransient<IServiceRepository, ServiceRepository>(); 
 builder.Services.AddTransient<IBottomGridRepository, BottomGridRepository>();
