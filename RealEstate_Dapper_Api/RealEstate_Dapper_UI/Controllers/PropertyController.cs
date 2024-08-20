@@ -12,7 +12,7 @@ namespace RealEstate_Dapper_UI.Controllers
         public PropertyController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
-        }
+        } 
 
         public async Task<IActionResult> Index()
         {
@@ -23,6 +23,24 @@ namespace RealEstate_Dapper_UI.Controllers
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultProductDtos>>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> PropertyListWithSearch(string searchKeyValue, string city, int propertyCategoryId)
+        {
+            searchKeyValue = TempData["searchKeyValue"].ToString();
+            city = TempData["city"].ToString();
+            propertyCategoryId = int.Parse(TempData["propertyCategoryId"].ToString()); 
+            
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:44353/api/Products/ResultProductWithSearchList?searchKeyValue={searchKeyValue}&propertyCategoryId={propertyCategoryId}&city={city}");
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<ResultProductWithSearchListDtos>>(jsonData);
                 return View(values);
             }
             return View();

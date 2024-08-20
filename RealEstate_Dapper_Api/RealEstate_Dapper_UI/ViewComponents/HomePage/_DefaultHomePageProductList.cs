@@ -12,11 +12,11 @@ namespace RealEstate_Dapper_UI.ViewComponents.HomePage
         {
             _httpClientFactory = httpClientFactory;
         }
-
+         
         public async Task <IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44353/api/Products/ProductListWithCategory");
+            var responseMessage = await client.GetAsync("https://localhost:44353/api/Products/GetProductByDealOfTheDayTrueWithCategory");
 
             if(responseMessage.IsSuccessStatusCode) 
             {
