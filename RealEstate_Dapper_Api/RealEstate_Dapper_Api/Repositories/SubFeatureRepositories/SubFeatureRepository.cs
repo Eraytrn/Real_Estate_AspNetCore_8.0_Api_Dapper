@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using RealEstate_Dapper_Api.Dtos.CategoryDtos;
 using RealEstate_Dapper_Api.Dtos.SubFeatureDtos;
 using RealEstate_Dapper_Api.Models.DapperContext;
 
@@ -14,7 +13,7 @@ namespace RealEstate_Dapper_Api.Repositories.SubFeatureRepositories
             _context = context;
         }
 
-        public async Task<List<ResultSubFeatureDto>> GetAllSubFeatureAsync()
+        public async Task<List<ResultSubFeatureDto>> GetAllSubFeature()
         {
             string query = "Select * from SubFeature";
             using (var connection = _context.CreateConnection())

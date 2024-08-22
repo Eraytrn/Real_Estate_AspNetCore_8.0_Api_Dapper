@@ -4,6 +4,6 @@ namespace RealEstate_Dapper_Api.Repositories.EstateAgentRepositories.DashboardRe
 {
     public interface ILast5ProductsRepository
     {
-        Task<List<ResultLast5ProductWithCategoryDto>> GetLast5ProductAsync(int id);
+        Task<List<ResultLast5ProductWithCategoryDto>> GetLast5Product(int id);
     }
 }

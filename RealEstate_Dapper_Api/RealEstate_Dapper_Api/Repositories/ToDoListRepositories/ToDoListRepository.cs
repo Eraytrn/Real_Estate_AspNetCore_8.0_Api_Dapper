@@ -13,17 +13,30 @@ namespace RealEstate_Dapper_Api.Repositories.ToDoListRepositories
             _context = context;
         }
 
-        public void CreateToDoList(CreateToDoListDto ToDoListDto)
+        public async Task CreateToDoList(CreateToDoListDto toDoListDto)
         {
-            throw new NotImplementedException();
+            string query = "insert into ToDoList(Description, ToDoListStatus) values (@description, @toDoListStatus)";
+            var parameters = new DynamicParameters();
+            parameters.Add("@description", toDoListDto.Description);
+            parameters.Add("@toDoListStatus", toDoListDto.ToDoListStatus);
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, parameters);
+            }
         }
 
-        public void DeleteToDoList(int id)
+        public async Task DeleteToDoList(int id)
         {
-            throw new NotImplementedException();
+            string query = "Delete From ToDoList Where ToDoListID = @toDoListID";
+            var parameters = new DynamicParameters();
+            parameters.Add("@toDoListID", id);
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, parameters);
+            }
         }
 
-        public async Task<List<ResultToDoListDto>> GetAllToDoListAsync()
+        public async Task<List<ResultToDoListDto>> GetAllToDoList()
         {
             string query = "Select * from ToDoList";
             using (var connection = _context.CreateConnection())
@@ -33,14 +46,31 @@ namespace RealEstate_Dapper_Api.Repositories.ToDoListRepositories
             }
         }
 
-        public Task<GetByIDToDoListDto> GetToDoList(int id)
+        public async Task<GetByIDToDoListDto> GetToDoList(int id)
         {
-            throw new NotImplementedException();
+            string query = "Select * From ToDoList Where ToDoListID = @toDoListID";
+            var parameters = new DynamicParameters();
+            parameters.Add("@toDoListID", id);
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryFirstOrDefaultAsync<GetByIDToDoListDto>(query, parameters);
+                return values;
+            }
         }
 
-        public void UpdateToDoList(UpdateToDoListDto ToDoListDto)
+        public async Task UpdateToDoList(UpdateToDoListDto toDoListDto)
         {
-            throw new NotImplementedException();
+            string query = "Update ToDoList Set Description=@description," +
+            "ToDoListStatus = @toDoListStatus " +
+            "where ToDoListID=@toDoListID";
+            var parameters = new DynamicParameters();
+            parameters.Add("@description", toDoListDto.Description);
+            parameters.Add("@toDoListStatus", toDoListDto.ToDoListStatus);
+            parameters.Add("@toDoListID", toDoListDto.ToDoListID);
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, parameters);
+            }
         }
     }
 }

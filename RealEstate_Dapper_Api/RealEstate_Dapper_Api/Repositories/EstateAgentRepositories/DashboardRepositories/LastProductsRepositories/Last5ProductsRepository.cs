@@ -13,7 +13,7 @@ namespace RealEstate_Dapper_Api.Repositories.EstateAgentRepositories.DashboardRe
             _context = context;
         }
 
-        public async Task<List<ResultLast5ProductWithCategoryDto>> GetLast5ProductAsync(int id)
+        public async Task<List<ResultLast5ProductWithCategoryDto>> GetLast5Product(int id)
         {
             string query = "Select Top(5) ProductID,Title,Price,City,District,ProductCategory,CategoryName,AdvertisementDate from Product inner join Category On Product.ProductCategory = Category.CategoryID Where EmployeeId=@employeeId Order by ProductID desc";
             var parameters = new DynamicParameters();

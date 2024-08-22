@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace RealEstate_Dapper_Api.Repositories.StatisticsRepositories
+﻿namespace RealEstate_Dapper_Api.Repositories.StatisticsRepositories
 {
     public interface IStatisticsRepository
     {
