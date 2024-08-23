@@ -7,7 +7,7 @@
         int PassiveCategoryCount();
         int ProductCount();
         int ApartmentCount();
-        string EmployeeNameByMaxProductCount();
+        string EstateAgentNameByMaxProductCount();
         string CategoryNameByMaxProductCount();
         decimal AverageProductPriceByRent();
         decimal AverageProductPriceBySale();
@@ -17,6 +17,6 @@
         string NewestBuildingYear();
         string OldestBuildingYear();
         int AverageRoomCount();
-        int ActiveEmployeeCount();
+        int ActiveEstateAgentCount();
     }
 }

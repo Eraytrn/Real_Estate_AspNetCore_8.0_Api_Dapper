@@ -20,10 +20,10 @@ namespace RealEstate_Dapper_Api.Controllers
             return Ok(_statisticsRepository.ActiveCategoryCount());
         }
 
-        [HttpGet("ActiveEmployeeCount")]
+        [HttpGet("ActiveEstateAgentCount")]
         public IActionResult ActiveEmployeeCount()
         {
-            return Ok(_statisticsRepository.ActiveEmployeeCount());
+            return Ok(_statisticsRepository.ActiveEstateAgentCount());
         }
 
         [HttpGet("ApartmentCount")]
@@ -74,10 +74,10 @@ namespace RealEstate_Dapper_Api.Controllers
             return Ok(_statisticsRepository.DifferentCityCount());
         }
 
-        [HttpGet("EmployeeNameByMaxProductCount")]
+        [HttpGet("EstateAgentNameByMaxProductCount")]
         public IActionResult EmployeeNameByMaxProductCount()
         {
-            return Ok(_statisticsRepository.EmployeeNameByMaxProductCount());
+            return Ok(_statisticsRepository.EstateAgentNameByMaxProductCount());
         }
 
         [HttpGet("LastProductPrice")]

@@ -23,9 +23,9 @@ namespace RealEstate_Dapper_UI.ViewComponents.Dashboard
 
             #region Statistic2 - EnBaşarılıPersonel
             var client2 = _httpClientFactory.CreateClient();
-            var responseMessage2 = await client2.GetAsync("https://localhost:44353/api/Statistics/EmployeeNameByMaxProductCount");
+            var responseMessage2 = await client2.GetAsync("https://localhost:44353/api/Statistics/EstateAgentNameByMaxProductCount");
             var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
-            ViewBag.employeeNameByMaxProductCount = jsonData2;
+            ViewBag.estateAgentNameByMaxProductCount = jsonData2;
             #endregion
 
             #region Statistic3 - İlandakiŞehirSayıları

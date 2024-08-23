@@ -21,9 +21,9 @@ namespace RealEstate_Dapper_Api.Repositories.StatisticsRepositories
             }
         }
 
-        public int ActiveEmployeeCount()
+        public int ActiveEstateAgentCount()
         {
-            string query = "Select Count(*) from Employee Where Status=1";
+            string query = "Select Count(*) from AppUser";
             using (var connection = _context.CreateConnection())
             {
                 var values = connection.QueryFirstOrDefault<int>(query);
@@ -111,9 +111,9 @@ namespace RealEstate_Dapper_Api.Repositories.StatisticsRepositories
             }
         }
 
-        public string EmployeeNameByMaxProductCount()
+        public string EstateAgentNameByMaxProductCount()
         {
-            string query = "Select Name, Count(*) 'product_count' From Product inner join Employee on Product.EmployeeID=Employee.EmployeeID Group by Name Order By product_count Desc";
+            string query = "Select UserName, Count(*) 'product_count' From Product inner join AppUser on Product.AppUserId=AppUser.UserId Group by UserName Order By product_count Desc";
             using (var connection = _context.CreateConnection())
             {
                 var values = connection.QueryFirstOrDefault<string>(query);

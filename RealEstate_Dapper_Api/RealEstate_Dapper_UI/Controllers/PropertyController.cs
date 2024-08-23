@@ -46,10 +46,10 @@ namespace RealEstate_Dapper_UI.Controllers
             return View();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> PropertySingle(int id)
-        {
-            id = 1;
+        [HttpGet("property/{slug}/{id}")]
+        public async Task<IActionResult> PropertySingle(string slug, int id)
+        { 
+            ViewBag.i = id;
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:44353/api/Products/GetProductByProductId?id=" + id);
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -68,8 +68,9 @@ namespace RealEstate_Dapper_UI.Controllers
             ViewBag.type = values.type;
             ViewBag.description = values.description;
             ViewBag.advertisementDate = values.AdvertisementDate;
+            ViewBag.slugUrl = values.SlugUrl;
 
-            ViewBag.builtYear = values2.buildYear;
+            ViewBag.buildYear = values2.buildYear;
             ViewBag.bedroomCount = values2.bedRoomCount;
             ViewBag.bathCount = values2.bathCount;
             ViewBag.productSize = values2.productSize;
@@ -87,8 +88,23 @@ namespace RealEstate_Dapper_UI.Controllers
             int month = timespan.Days;
             ViewBag.dateDiff = month / 30;
 
-            return View(values);
+            string slugFromTitle = CreateSlug(values.title);
+            ViewBag.slugUrl = slugFromTitle;
 
+            return View();
+
+        }
+
+
+        public string CreateSlug(string title)
+        {
+            title = title.ToLowerInvariant(); // Küçük harfe çevir
+            title = title.Replace(" ", "-"); // Boşlukları tire ile değiştir
+            title = System.Text.RegularExpressions.Regex.Replace(title, @"[^a-z0-9\s-]", ""); // Geçersiz karakterleri kaldır
+            title = System.Text.RegularExpressions.Regex.Replace(title, @"\s+", " ").Trim(); // Birden fazla boşluğu tek boşluğa indir ve kenar boşluklarını kaldır
+            title = System.Text.RegularExpressions.Regex.Replace(title, @"\s", "-"); // Boşlukları tire ile değiştir
+
+            return title;
         }
     }
 }

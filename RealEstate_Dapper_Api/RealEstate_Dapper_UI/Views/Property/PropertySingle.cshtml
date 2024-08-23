@@ -51,7 +51,7 @@
             <div class="col-lg-8 w3l-news">
                 <div class="blog-single-post">
 
-                    @await Component.InvokeAsync("_PropertySliderComponentPartial")
+                    @await Component.InvokeAsync("_PropertySliderComponentPartial",new{id=ViewBag.i})
                     
 
                     <div class="single-post-content">
@@ -72,7 +72,7 @@
                                 <li><strong>Garaj Sayısı :</strong> @ViewBag.garageSize </li>
                                 <li><strong>Garages :</strong> 15 </li>
                                 <li><strong>İlan Fiyatı :</strong> @ViewBag.price.ToString("N0") ₺</li>
-                                <li><strong>Yapım Yılı :</strong>@ViewBag.builtYear </li>
+                                <li><strong>Yapım Yılı :</strong>@ViewBag.buildYear </li>
                                 <li><strong>İlan Tarihi :</strong> @ViewBag.advertisementDate.ToString("dd.MM.yyyy") </li>
                             </ul>
                         </div>
