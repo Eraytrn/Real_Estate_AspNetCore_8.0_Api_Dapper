@@ -33,7 +33,6 @@ namespace RealEstate_Dapper_Api.Containers
             services.AddTransient<IBottomGridRepository, BottomGridRepository>();
             services.AddTransient<IPopularLocationRepository, PopularLocationRepository>();
             services.AddTransient<ITestimonialRepository, TestimonialRepository>();
-            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<IStatisticsRepository, StatisticsRepository>();
             services.AddTransient<IContactRepository, ContactRepository>();
             services.AddTransient<IToDoListRepository, ToDoListRepository>();
