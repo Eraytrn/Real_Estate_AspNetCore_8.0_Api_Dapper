@@ -23,11 +23,11 @@ namespace RealEstate_Dapper_Api.Repositories.EstateAgentRepositories.DashboardRe
             }
         }
 
-        public int ProductCountByEmployeeId(int id)
+        public int ProductCountByEstateAgentId(int id)
         {
-            string query = "Select Count(*) From Product where EmployeeID = @employeeID";
+            string query = "Select Count(*) From Product where AppUserId = @appUserId";
             var parameters = new DynamicParameters();
-            parameters.Add("@employeeID", id);
+            parameters.Add("@appUserId", id);
             using (var connection = _context.CreateConnection())
             {
                 var values = connection.QueryFirstOrDefault<int>(query,parameters);
@@ -37,9 +37,9 @@ namespace RealEstate_Dapper_Api.Repositories.EstateAgentRepositories.DashboardRe
 
         public int ProductCountByStatusFalse(int id)
         {
-            string query = "Select Count(*) From Product where EmployeeID = @employeeID And ProductStatus=0";
+            string query = "Select Count(*) From Product where AppUserId = @appUserId And ProductStatus=0";
             var parameters = new DynamicParameters();
-            parameters.Add("@employeeID", id);
+            parameters.Add("@appUserId", id);
             using (var connection = _context.CreateConnection())
             {
                 var values = connection.QueryFirstOrDefault<int>(query, parameters);
@@ -49,9 +49,9 @@ namespace RealEstate_Dapper_Api.Repositories.EstateAgentRepositories.DashboardRe
 
         public int ProductCountByStatusTrue(int id)
         {
-            string query = "Select Count(*) From Product where EmployeeID = @employeeID And ProductStatus=1";
+            string query = "Select Count(*) From Product where AppUserId = @appUserId And ProductStatus=1";
             var parameters = new DynamicParameters();
-            parameters.Add("@employeeID", id);
+            parameters.Add("@appUserId", id);
             using (var connection = _context.CreateConnection())
             {
                 var values = connection.QueryFirstOrDefault<int>(query, parameters);

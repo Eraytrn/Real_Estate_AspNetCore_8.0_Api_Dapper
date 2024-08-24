@@ -1,6 +1,6 @@
 ﻿namespace RealEstate_Dapper_Api.Dtos.EmployeeDtos
 {
-    public class ResultEmployeeDto
+    public class ResultAppUserDto
     {
         public int EmployeeID { get; set; }
         public string Name{ get; set; }

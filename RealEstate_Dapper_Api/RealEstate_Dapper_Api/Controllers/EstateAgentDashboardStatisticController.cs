@@ -15,10 +15,10 @@ namespace RealEstate_Dapper_Api.Controllers
             _statisticRepository = statisticRepository;
         }
 
-        [HttpGet("ProductCountByEmployeeId")]
-        public IActionResult ProductCountByEmployeeId(int id)
+        [HttpGet("ProductCountByEstateAgentId")]
+        public IActionResult ProductCountByEstateAgentId(int id)
         {
-            return Ok(_statisticRepository.ProductCountByEmployeeId(id));
+            return Ok(_statisticRepository.ProductCountByEstateAgentId(id));
         }
 
         [HttpGet("ProductCountByStatusTrue")]

@@ -12,7 +12,7 @@ namespace RealEstate_Dapper_Api.Repositories.EmployeeRepositories
         {
             _context = context;
         }
-        public async Task CreateEmployee(CreateEmployeeDto createEmployeeDto)
+        public async Task CreateEmployee(CreateAppUserDto createEmployeeDto)
         {
             string query = "insert into Employee(Name, Title, Mail, PhoneNumber, ImageUrl, Status) values (@name, @title, @mail, @phoneNumber, @imageUrl, @status)";
             var parameters = new DynamicParameters();
@@ -39,12 +39,12 @@ namespace RealEstate_Dapper_Api.Repositories.EmployeeRepositories
             }
         }
 
-        public async Task<List<ResultEmployeeDto>> GetAllEmployee()
+        public async Task<List<ResultAppUserDto>> GetAllEmployee()
         {
             string query = "Select * from Employee";
             using (var connection = _context.CreateConnection())
             {
-                var values = await connection.QueryAsync<ResultEmployeeDto>(query);
+                var values = await connection.QueryAsync<ResultAppUserDto>(query);
                 return values.ToList();
             }
         }
@@ -61,7 +61,7 @@ namespace RealEstate_Dapper_Api.Repositories.EmployeeRepositories
             }
         }
 
-        public async Task UpdateEmployee(UpdateEmployeeDto updateEmployeeDto)
+        public async Task UpdateEmployee(UpdateAppUserDto updateEmployeeDto)
         {
             string query = "Update Employee set Name=@name, Title=@title, Mail=@mail, PhoneNumber=@phoneNumber, ImageUrl=@imageUrl, Status=@status where EmployeeID=@employeeId";
             var parameters = new DynamicParameters();

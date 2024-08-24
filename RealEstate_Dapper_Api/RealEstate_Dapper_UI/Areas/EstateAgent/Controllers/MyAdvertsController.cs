@@ -23,12 +23,12 @@ namespace RealEstate_Dapper_UI.Areas.EstateAgent.Controllers
         {
             var id = _loginService.GetUserId;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44353/api/Products/ProductAdvertsListByEmployeeByTrue?id=" + id);
+            var responseMessage = await client.GetAsync("https://localhost:44353/api/Products/ProductAdvertsListByEstateAgentByTrue?id=" + id);
 
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultProductAdvertListWithCategoryByEmployeeDtos>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultProductAdvertListWithCategoryByEstateAgentDtos>>(jsonData);
                 return View(values);
             }
             return View();
@@ -38,12 +38,12 @@ namespace RealEstate_Dapper_UI.Areas.EstateAgent.Controllers
         {
             var id = _loginService.GetUserId;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44353/api/Products/ProductAdvertsListByEmployeeByFalse?id=" + id);
+            var responseMessage = await client.GetAsync("https://localhost:44353/api/Products/ProductAdvertsListByEstateAgentByFalse?id=" + id);
 
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultProductAdvertListWithCategoryByEmployeeDtos>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultProductAdvertListWithCategoryByEstateAgentDtos>>(jsonData);
                 return View(values);
             }
             return View();
@@ -76,7 +76,7 @@ namespace RealEstate_Dapper_UI.Areas.EstateAgent.Controllers
             createProductDtos.ProductStatus = true;
 
             var id = _loginService.GetUserId;
-            createProductDtos.EmployeeID = int.Parse(id);
+            createProductDtos.AppUserId = int.Parse(id);
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createProductDtos);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");

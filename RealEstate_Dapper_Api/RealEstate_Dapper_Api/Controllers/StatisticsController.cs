@@ -21,7 +21,7 @@ namespace RealEstate_Dapper_Api.Controllers
         }
 
         [HttpGet("ActiveEstateAgentCount")]
-        public IActionResult ActiveEmployeeCount()
+        public IActionResult ActiveEstateAgentCount()
         {
             return Ok(_statisticsRepository.ActiveEstateAgentCount());
         }

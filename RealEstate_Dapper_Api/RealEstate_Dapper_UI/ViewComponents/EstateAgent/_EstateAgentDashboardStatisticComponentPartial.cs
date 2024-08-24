@@ -27,23 +27,23 @@ namespace RealEstate_Dapper_UI.ViewComponents.EstateAgent
 
             #region Statistic2 - EmlakçınınToplamİlanSayısı
             var client2 = _httpClientFactory.CreateClient();
-            var responseMessage2 = await client2.GetAsync("https://localhost:44353/api/EstateAgentDashboardStatistic/ProductCountByEmployeeId?id="+id);
+            var responseMessage2 = await client2.GetAsync("https://localhost:44353/api/EstateAgentDashboardStatistic/ProductCountByEstateAgentId?id="+id);
             var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
-            ViewBag.employeeByProductCount = jsonData2;
+            ViewBag.estateAgentByProductCount = jsonData2;
             #endregion
 
             #region Statistic3 - AktifİlanSayısı
             var client3 = _httpClientFactory.CreateClient();
             var responseMessage3 = await client3.GetAsync("https://localhost:44353/api/EstateAgentDashboardStatistic/ProductCountByStatusTrue?id="+id);
             var jsonData3 = await responseMessage3.Content.ReadAsStringAsync();
-            ViewBag.productCountByEmployeeByStatusTrue = jsonData3;
+            ViewBag.productCountByEstateAgentByStatusTrue = jsonData3;
             #endregion
 
             #region Statistic4 - PasifİlanSayısı
             var client4 = _httpClientFactory.CreateClient();
             var responseMessage4 = await client4.GetAsync("https://localhost:44353/api/EstateAgentDashboardStatistic/ProductCountByStatusFalse?id="+id);
             var jsonData4 = await responseMessage4.Content.ReadAsStringAsync();
-            ViewBag.productCountByEmployeeByStatusFalse = jsonData4;
+            ViewBag.productCountByEstateAgentByStatusFalse = jsonData4;
             #endregion
 
 

@@ -1,6 +1,6 @@
 ﻿namespace RealEstate_Dapper_UI.Dtos.ProductDtos
 {
-    public class ResultProductAdvertListWithCategoryByEmployeeDtos
+    public class ResultProductAdvertListWithCategoryByEstateAgentDtos
     {
         public int productID { get; set; }
         public string title { get; set; }
@@ -11,6 +11,7 @@
         public string coverImage { get; set; }
         public string type { get; set; }
         public string address { get; set; }
+        public string SlugUrl { get; set; }
         public bool dealOfTheDay { get; set; }
     }
 }

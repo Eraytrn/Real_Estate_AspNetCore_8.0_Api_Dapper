@@ -4,10 +4,10 @@ namespace RealEstate_Dapper_Api.Repositories.EmployeeRepositories
 {
     public interface IEmployeeRepository
     {
-        Task<List<ResultEmployeeDto>> GetAllEmployee();
-        Task CreateEmployee(CreateEmployeeDto createEmployeeDto);
+        Task<List<ResultAppUserDto>> GetAllEmployee();
+        Task CreateEmployee(CreateAppUserDto createEmployeeDto);
         Task DeleteEmployee(int id);
-        Task UpdateEmployee(UpdateEmployeeDto updateEmployeeDto);
+        Task UpdateEmployee(UpdateAppUserDto updateEmployeeDto);
         Task<GetByIDEmployeeDto> GetEmployee(int id);
     }
 }

@@ -1,13 +1,15 @@
 ﻿using RealEstate_Dapper_Api.Dtos.ProductDetailDtos;
 using RealEstate_Dapper_Api.Dtos.ProductDtos;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace RealEstate_Dapper_Api.Repositories.ProductRepository
 {
     public interface IProductRepository
     {
         Task<List<ResultProductDto>> GetAllProductAsync();
-        Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetProductAdvertListByEmployeeAsyncByTrue(int id);
-        Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetProductAdvertListByEmployeeAsyncByFalse(int id);
+        Task<List<ResultProductAdvertListWithCategoryByEstateAgentDto>> GetProductAdvertListByEstateAgentAsyncByTrue(int id);
+        Task<List<ResultProductAdvertListWithCategoryByEstateAgentDto>> GetProductAdvertListByEstateAgentAsyncByFalse(int id);
         Task<List<ResultProductWithCategoryDto>> GetAllProductWithCategoryAsync();
         Task ProductDealOfTheDayStatusChangeToTrue(int id);
         Task ProductDealOfTheDayStatusChangeToFalse(int id);
@@ -18,5 +20,10 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
         Task<List<ResultProductWithSearchListDto>> ResultProductWithSearchList(string searchKeyValue, int propertyCategoryId, string city);
         Task<List<ResultProductWithCategoryDto>> GetProductByDealOfTheDayTrueWithCategoryAsync();
         Task<List<ResultLast3ProductWithCategoryDto>> GetLast3ProductAsync();
+        Task DeleteProduct(int id);
+        Task<List<ResultProductWithCategoryDto>>ResultProductCategoryByVilla();
+        Task<List<ResultProductWithCategoryDto>> ResultProductCategoryByDaire();
+        Task<List<ResultProductWithCategoryDto>> ResultProductCategoryByYazlik();
+        
     }
 }

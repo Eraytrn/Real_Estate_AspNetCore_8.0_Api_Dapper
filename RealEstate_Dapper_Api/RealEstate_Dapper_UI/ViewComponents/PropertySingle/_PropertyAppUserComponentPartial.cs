@@ -17,7 +17,7 @@ namespace RealEstate_Dapper_UI.ViewComponents.PropertySingle
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44353/api/AppUsers?id=1");
+            var responseMessage = await client.GetAsync("https://localhost:44353/api/AppUsers/GetAppUserByProductId?id=1");
 
             if (responseMessage.IsSuccessStatusCode)
             {

@@ -37,18 +37,18 @@ namespace RealEstate_Dapper_UI.Controllers
                 var jsonData = await response.Content.ReadAsStringAsync();
                 var tokenModel = JsonSerializer.Deserialize<JwtResponseModel>(jsonData, new JsonSerializerOptions
                 {
-                    PropertyNamingPolicy =JsonNamingPolicy.CamelCase
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 });
-                if (tokenModel != null) 
+                if (tokenModel != null)
                 {
                     JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
-                    var token = handler.ReadJwtToken(tokenModel.Token);    
+                    var token = handler.ReadJwtToken(tokenModel.Token);
                     var claims = token.Claims.ToList();
 
                     if (tokenModel.Token != null)
                     {
                         claims.Add(new Claim("realestatetoken", tokenModel.Token));
-                        var claimsIdentity = new ClaimsIdentity(claims,JwtBearerDefaults.AuthenticationScheme);
+                        var claimsIdentity = new ClaimsIdentity(claims, JwtBearerDefaults.AuthenticationScheme);
                         var authProps = new AuthenticationProperties
                         {
                             ExpiresUtc = tokenModel.ExpireDate,
@@ -56,10 +56,10 @@ namespace RealEstate_Dapper_UI.Controllers
                         };
 
                         await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme, new ClaimsPrincipal
-                            (claimsIdentity),authProps);
-                        return RedirectToAction("Index", "Employee");
+                            (claimsIdentity), authProps);
+                        return RedirectToAction("Index", "EstateAgent");
                     }
-                }          
+                }
             }
             return View();
         }
