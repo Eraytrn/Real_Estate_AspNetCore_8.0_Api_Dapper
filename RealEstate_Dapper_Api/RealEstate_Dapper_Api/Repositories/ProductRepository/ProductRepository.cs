@@ -38,6 +38,36 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepository
             }
         }
 
+       
+
+        public async Task UpdateProduct(UpdateProductDto updateProductDto)
+        {
+            string query = @"Update Product Set Title=@Title,SlugUrl=@SlugUrl,Price=@Price, CoverImage=@CoverImage,City=@City,District=@District,Address=@Address,
+                             Description=@Description,Type=@Type,ProductCategory=@ProductCategory,AppUserId=@AppUserID, DealOfTheDay=@DealOfTheDay,
+                             AdvertisementDate=@AdvertisementDate,ProductStatus=@ProductStatus where ProductID=@ProductId"
+                           ;
+            var parameters = new DynamicParameters();
+            parameters.Add("@Title", updateProductDto.Title);
+            parameters.Add("@SlugUrl", updateProductDto.SlugUrl);
+            parameters.Add("@Price", updateProductDto.Price);
+            parameters.Add("@City", updateProductDto.City);
+            parameters.Add("@District", updateProductDto.District);
+            parameters.Add("@CoverImage", updateProductDto.CoverImage);
+            parameters.Add("@Address", updateProductDto.Address);
+            parameters.Add("@Description", updateProductDto.Description);
+            parameters.Add("@Type", updateProductDto.Type);
+            parameters.Add("@DealOfTheDay", updateProductDto.DealOfTheDay);
+            parameters.Add("@AdvertisementDate", updateProductDto.AdvertisementDate);
+            parameters.Add("@ProductStatus", updateProductDto.ProductStatus);
+            parameters.Add("@ProductCategory", updateProductDto.ProductCategory);
+            parameters.Add("@AppUserID", updateProductDto.AppUserId);
+            parameters.Add("@ProductId", updateProductDto.ProductID);
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, parameters);
+            }
+        }
+
         public async Task<List<ResultProductDto>> GetAllProductAsync()
         {
             string query = "Select * From Product";

@@ -27,6 +27,7 @@ namespace RealEstate_Dapper_UI.Controllers
             return View();
         }
 
+
         [HttpGet]
         public async Task<IActionResult> CreateProduct()
         {
@@ -43,13 +44,15 @@ namespace RealEstate_Dapper_UI.Controllers
                                                        Value = x.CategoryID.ToString()
                                                    }).ToList();
             ViewBag.v = categoryValues;
-
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductDtos createProductDtos)
         {
+            createProductDtos.DealOfTheDay = false;
+            createProductDtos.AdvertisementDate = DateTime.Now;
+            createProductDtos.ProductStatus = true;
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createProductDtos);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -60,11 +63,13 @@ namespace RealEstate_Dapper_UI.Controllers
             }
             return View();
         }
+        
+
 
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:44353/api/Products/");
+            var responseMessage = await client.DeleteAsync($"https://localhost:44353/api/Products/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

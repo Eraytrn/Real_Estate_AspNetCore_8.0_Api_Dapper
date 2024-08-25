@@ -77,7 +77,7 @@ namespace RealEstate_Dapper_UI.Controllers
 
         [HttpPost]
         public async Task<IActionResult> UpdateCategory(UpdateCategoryDtos  updateCategoryDtos)
-        {
+        { 
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateCategoryDtos);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");

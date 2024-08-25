@@ -72,6 +72,13 @@ namespace RealEstate_Dapper_Api.Controllers
             return Ok("İlan Başarıyla Eklendi");
         }
 
+        [HttpPut]
+        public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
+        {
+            await _productRepository.UpdateProduct(updateProductDto);
+            return Ok("İlan Başarıyla Güncellendi");
+        }
+
         [HttpGet("GetProductByProductId")]
         public async Task<IActionResult> GetProductByProductId(int id)
         {

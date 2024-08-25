@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Admin/Index.cshtml";
-    int count = 0;
+    //int count = 0;
 }
 
 <div class="container-fluid pt-4 px-4">
@@ -30,9 +30,9 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                count++;
+                               // count++;
                                 <tr>
-                                    <th scope="row">@count</th>
+                                    <th scope="row">@item.productID</th>
                                     <td>@item.title</td>
                                     <td>@item.city</td>
                                     <td>@item.district</td>

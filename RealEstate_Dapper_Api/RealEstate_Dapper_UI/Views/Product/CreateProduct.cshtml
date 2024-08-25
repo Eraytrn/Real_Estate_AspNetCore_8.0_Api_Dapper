@@ -1,27 +1,27 @@
 ﻿@model CreateProductDtos
 @{
     ViewData["Title"] = "CreateProduct";
-    Layout = "~/Views/EstateAgentPanel/Index.cshtml";
+    Layout = "~/Views/Admin/Index.cshtml";
 }
 
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
         <div class="col-12">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">İlan Ekleme Sayfası</h6>
+                <h6 class="mb-4">Yeni İlan Ekleme Sayfası</h6>
                 <form method="post">
                     <label>İlan Başlığı</label>
                     <input type="text" asp-for="Title" class="form-control" />
-                    <br/>
+                    <br />
                     <label>Şehir</label>
                     <input type="text" asp-for="City" class="form-control" />
-                    <br /> 
+                    <br />
                     <label>İlçe</label>
                     <input type="text" asp-for="District" class="form-control" />
-                    <br /> 
+                    <br />
                     <label>Kategori</label>
-                    @Html.DropDownListFor(x => x.ProductCategory,(List<SelectListItem>)ViewBag.v, new {@class="form-control"})
-                    <br /> 
+                    @Html.DropDownListFor(x => x.ProductCategory, (List<SelectListItem>)ViewBag.v, new { @class = "form-control" })
+                    <br />
                     <label>Fiyat</label>
                     <input type="text" asp-for="Price" class="form-control" />
                     <br />
@@ -40,4 +40,3 @@
         </div>
     </div>
 </div>
-
