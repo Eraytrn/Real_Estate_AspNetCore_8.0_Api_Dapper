@@ -58,7 +58,7 @@ namespace RealEstate_Dapper_UI.Areas.EstateAgent.Controllers
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<List<ResultCategoryDtos>>(jsonData);
 
-            List<SelectListItem> categoryValues = (from x in values.ToList()
+            List<SelectListItem> categoryValues = (from x in values?.ToList()
                                                    select new SelectListItem
                                                    {
                                                        Text = x.CategoryName,
